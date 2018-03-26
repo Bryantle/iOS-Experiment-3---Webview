@@ -7,14 +7,31 @@
 //
 
 import UIKit
+import WebKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WKNavigationDelegate{
+    var noodles: WKWebView!
 
+    override func loadView() {
+        noodles = WKWebView()
+        noodles.navigationDelegate = self
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        let url = URL(string: "https://google.com")!
+        let x = SecCreateSharedWebCredentialPassword()
+        print(x)
+        noodles.load(URLRequest(url: url))
+        view = noodles
+        
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        title = webView.title
     }
 
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
