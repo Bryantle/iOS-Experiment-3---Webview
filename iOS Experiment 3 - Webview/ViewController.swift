@@ -19,11 +19,18 @@ class ViewController: UIViewController, WKNavigationDelegate{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        let url = URL(string: "https://google.com")!
+        var url = URL(string: "https://google.com")!
         let x = SecCreateSharedWebCredentialPassword()
         noodles.load(URLRequest(url: url))
-        if !noodles.canGoBack {print(x)}
+        if noodles.canGoBack {
+            noodles.goBack()
+        }
+        if !noodles.canGoBack {
+            print(x)
+            url = URL(string: "https://facebook.com")!
+        }
         view = noodles
+        
         
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
