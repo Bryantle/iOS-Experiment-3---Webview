@@ -21,8 +21,8 @@ class ViewController: UIViewController, WKNavigationDelegate{
         super.viewDidLoad()
         let url = URL(string: "https://google.com")!
         let x = SecCreateSharedWebCredentialPassword()
-        print(x)
         noodles.load(URLRequest(url: url))
+        if !noodles.canGoBack {print(x)}
         view = noodles
         
     }
